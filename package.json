@@ -1,0 +1,16 @@
+{
+  "name": "ivantec",
+  "version": "1.0.0",
+  "description": "trabalho desenvolvido com o professor Wellington para criar uma aplicacao web chamada \"Loja de produtos de TI Wesley association\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "pug": "^3.0.3"
+  }
+}

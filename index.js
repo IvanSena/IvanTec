@@ -1,20 +1,57 @@
-console.log("ONDE EU ESTOU");
+console.log("Vai Rodando!");
 
 const express = require("express");
 const app = express();
-const pug= require("pug")
+const port = 3001;
+const address = "localhost";
+const pug = require("pug");
 
-let listanoomes=["Wellington","José","Maria","Carlos","José","Maria","Jão"];
-
-app.use(express.static('public')); //faz com que a aplicação web criada com o express possa acessar recursos estaticos na pasta public
+app.use(express.static('public'));
 
 app.set('view engine', 'pug');
-app.get("/",(req,res)=>{
-  res.render("home");
+app.set('views', 'views');
+
+app.use(express.urlencoded({ extended: true }));
+
+// Produtos na tela principal
+app.get("/", (req, res) => {
+  const produtos = [
+    { nome: 'Notebook', descricao: 'Notebook Dell', preco: 2500 },
+    { nome: 'Mouse', descricao: 'Mouse Gamer RGB full power', preco: 595 }
+  ];
+  res.render('index', { produtos });
 });
 
-app.listen(3000,  
-  () => {
-  console.log('Servidor iniciado! Na porta 3000');
-}
-);
+// Tela de produtos
+app.get("/produtos", (req, res) => {
+  const produtos = [
+    { nome: 'Notebook', descricao: 'Notebook Dell', preco: 2500 },
+    { nome: 'Mouse', descricao: 'Mouse Gamer RGB full power', preco: 595 }
+  ];
+  res.render('produtos', { produtos });
+});
+
+// Tela de Login
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+
+app.post('/login', (req, res) => {
+  const { email, senha } = req.body;
+  res.render('login', { error: 'Credenciais invalidas' });
+});
+
+// Tela de Cadastro
+app.get('/cadastro', (req, res) => {
+  res.render('cadastro');
+});
+
+app.post('/cadastro', (req, res) => {
+  const { nome, email, senha } = req.body;
+  res.render('cadastro', { error: 'Erro ao cadastrar usuário' });
+});
+
+// Iniciar o servidor
+app.listen(port, address, () => {
+  console.log(`Servidor executando no endereço http://${address}:${port}`);
+});

@@ -1,0 +1,18 @@
+extends layout
+//aparentemente o pug entende os seus arquivos como objetos, afinal eu consigo extender essa pagina aparatir da página layout
+//(é como se layout fosse o pai e index ou as demais páginas fossem filho de layout
+
+block content
+  .content
+  h1 Bem-vindo à WW IvanTec- loja de equipamentos e artefatos tecnológicos de todos os tipos
+  p Aqui você pode encontrar cadastar produtos de informática, contando que sejam tecnológicos
+
+h2 Produtos Disponíveis
+if produtos.length
+  each produto in produtos
+    .produtos
+    h3 ${produto.nome}
+    p Descrição: ${produto.descricao}
+    p Preço: R$ ${produto.preco}
+  else
+    p Nemnhum produto disponível no momento
